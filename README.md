@@ -10,7 +10,8 @@ docker inspect<br/>
 <br/><br/>
 We create images, start containers, pull images, create and build images from Dockerfiles and look at Docker compose
 <br/><br/>
-Exercise<br>
+<b>Exercise</b>
+<br/><br/>
 The following URL https://serversforhackers.com/dockerized-app/docker-compose describes a three tier docker composed web application with a database.  
 <br>
 Use this as guidance to update the docker-compose.yaml file to 
