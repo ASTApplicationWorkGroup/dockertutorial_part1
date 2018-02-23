@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 #install needed software on the Docker container
-RUN apt-get update && install nodejs vim net-tools npm -y
+RUN apt-get update && apt-get install nodejs vim net-tools npm -y
 
 #create the web application directory on the Docker container
 RUN mkdir -p /mywebapp
@@ -12,7 +12,7 @@ WORKDIR /mywebapp
 #into the WORKDIR
 # our webserver code server.js needs to have this name
 # so that npm start (below) works
-copy server.js /mywebapp
+COPY server.js /mywebapp
 
 #create the project directory support structure
 RUN npm init -f
@@ -31,4 +31,4 @@ RUN chmod 755 /usr/bin/node
 EXPOSE 3000
 
 #start the server
-CMD["npm", "start"]
+CMD ["npm", "start"]
