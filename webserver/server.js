@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const request = require('request');
 
 const PORT = 3000;
 let HOST = "not known";
@@ -24,6 +25,22 @@ require('dns').lookup(require('os').hostname(),
      const app = express();
      app.get('/', (req, res) => {
        res.send('Hello world from ' + `Running on http://${HOST}:${PORT}`);
+     });
+
+     //Translate passed in string
+     app.get('/translate', (req, res) => {
+
+       
+       //call our microservice through the API Gateway
+       request.get("http://" + BUSINESS_LAYER_IP + ":" + BUSINESS_LAYER_PORT + "/stringFun/translate?p=" + res.query.inString, function (err, res, body) {
+           if (!err) {
+             var resultsObj = JSON.parse(body);
+             res.send(resultsObj);
+           }
+           else {
+             res.send('and error occurred: ' + JSON.stringify(err));
+           }
+      });
      });
 
      app.listen(PORT, HOST);
