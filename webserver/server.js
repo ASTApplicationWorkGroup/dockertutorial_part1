@@ -5,6 +5,8 @@ const request = require('request');
 
 const PORT = 3000;
 let HOST = "not known";
+const BUSINESS_LAYER_IP = process.env.BUSINESS_LAYER_IP;
+const BUSINESS_LAYER_PORT = process.env.BUSINESS_LAYER_PORT;
 
 //require means load or create an object in this case
 //get the dns object and uses its lookup method to lookup the ip address 
@@ -24,15 +26,18 @@ require('dns').lookup(require('os').hostname(),
      HOST = host_ip_address;
      const app = express();
      app.get('/', (req, res) => {
-       res.send('Hello world from ' + `Running on http://${HOST}:${PORT}`);
+       res.send('Hello world from ' + `Running on http://${HOST}:${PORT} ${BUSINESS_LAYER_IP} ${BUSINESS_LAYER_PORT} `);
      });
 
-     //Translate passed in string
-     app.get('/translate', (req, res) => {
+     app.get('/tr', (req, res) => { res.send(req.query.inString) });
 
-       
+     //Translate passed in string
+     app.get('/toRussian', (req, res) => {
+
+       let value = req.query.inString;
+
        //call our microservice through the API Gateway
-       request.get("http://" + BUSINESS_LAYER_IP + ":" + BUSINESS_LAYER_PORT + "/stringFun/translate?p=" + res.query.inString, function (err, res, body) {
+       request.get(`http://${BUSINESS_LAYER_IP}:${BUSINESS_LAYER_PORT}/stringFun/translate?p=` + value, function (err, res, body) {
            if (!err) {
              var resultsObj = JSON.parse(body);
              res.send(resultsObj);

@@ -12,8 +12,8 @@ services:
   webserver1:
      build: ./webserver
      environment:
-        - BUSINESS_LAYER_IP = businesslayer
-        - BUSINESS_LAYER_PORT = "8012"
+        - BUSINESS_LAYER_IP=businesslayer
+        - BUSINESS_LAYER_PORT="8012"
      links: 
         - businesslayer 
      ports:
@@ -25,8 +25,8 @@ services:
   webserver2:
      build: ./webserver
      environment:
-        - BUSINESS_LAYER_IP = businesslayer
-        - BUSINESS_LAYER_PORT = "8012"
+        - BUSINESS_LAYER_IP=businesslayer
+        - BUSINESS_LAYER_PORT="8012"
      links: 
         - businesslayer 
      ports:
@@ -37,6 +37,7 @@ services:
         - mynetwork
   businesslayer:
      build: ./microservices
+     stdin_open: true 
      ports:
         - "8012"
      networks:
