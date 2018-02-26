@@ -26,24 +26,23 @@ require('dns').lookup(require('os').hostname(),
      HOST = host_ip_address;
      const app = express();
      app.get('/', (req, res) => {
-       res.send('Hello world from ' + `Running on http://${HOST}:${PORT} ${BUSINESS_LAYER_IP} ${BUSINESS_LAYER_PORT} `);
+       res.send('Hello world from ' + `Running on http://${HOST}:${PORT}`);
      });
-
-     app.get('/tr', (req, res) => { res.send(req.query.inString) });
 
      //Translate passed in string
      app.get('/toRussian', (req, res) => {
 
        let value = req.query.inString;
+       let response = res;
 
        //call our microservice through the API Gateway
        request.get(`http://${BUSINESS_LAYER_IP}:${BUSINESS_LAYER_PORT}/stringFun/translate?p=` + value, function (err, res, body) {
            if (!err) {
              var resultsObj = JSON.parse(body);
-             res.send(resultsObj);
+             response.send(resultsObj);
            }
            else {
-             res.send('and error occurred: ' + JSON.stringify(err));
+             response.send('and error occurred: ' + JSON.stringify(err));
            }
       });
      });

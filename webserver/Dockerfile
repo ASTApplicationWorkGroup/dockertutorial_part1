@@ -1,10 +1,14 @@
 FROM ubuntu:latest
 
 #install needed software on the Docker container
-RUN apt-get update && apt-get install nodejs vim net-tools npm -y
+RUN apt-get update && apt-get install vim net-tools npm -y
 
 #create the web application directory on the Docker container
 RUN mkdir -p /mywebapp
+
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install -y nodejs
+
 
 WORKDIR /mywebapp
 
@@ -19,6 +23,7 @@ RUN npm init -f
 
 #install express which is the library that we use to run our webserver
 RUN npm install express --save
+RUN npm install request --save
 
 #make sure our code is executable
 RUN chmod -R 755 /mywebapp

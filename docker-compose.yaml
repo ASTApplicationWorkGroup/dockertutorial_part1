@@ -13,7 +13,7 @@ services:
      build: ./webserver
      environment:
         - BUSINESS_LAYER_IP=businesslayer
-        - BUSINESS_LAYER_PORT="8012"
+        - BUSINESS_LAYER_PORT=8012
      links: 
         - businesslayer 
      ports:
@@ -26,7 +26,7 @@ services:
      build: ./webserver
      environment:
         - BUSINESS_LAYER_IP=businesslayer
-        - BUSINESS_LAYER_PORT="8012"
+        - BUSINESS_LAYER_PORT=8012
      links: 
         - businesslayer 
      ports:

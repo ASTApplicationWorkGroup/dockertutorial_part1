@@ -1,7 +1,7 @@
 FROM ubuntu
   
 #install needed software on the Docker container
-RUN apt-get update && apt-get install nodejs vim net-tools curl -y
+RUN apt-get update && apt-get install vim net-tools curl -y
 
 #create the application gateway directory on the Docker container
 RUN mkdir -p /apigateway
