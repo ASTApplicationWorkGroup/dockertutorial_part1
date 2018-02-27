@@ -35,4 +35,4 @@ The action invoked in in the (microservices/api.js file) as the following:<br/><
         }); <br/>
 
 <br/><br/>
-A promise is a callback and documented at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+A promise is a callback and the concept is documented at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
