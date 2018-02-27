@@ -18,11 +18,13 @@ This branch contains updates to the webserver/server.js file to add a get HTTP c
 <br/>
 An example to invoke this would be localhost:3000/toRussian?inString=burt
 <br/><br/>
-This call goes to an API Gateway in the microservices layer.  The API Gateway calls upon (via a REST call) to the yandex translation service.
+This call goes to an API Gateway in the microservices layer.  
 <br/>
+The API Gateway calls upon (via a REST call) to the yandex translation service.
+<br/><br/>
 This service is accessed with a key I created via the object (this in the microservices/api.js file):<br/><br/>
 var translate = require('yandex-translate')('trnsl.1.1.20180224T101627Z.60834ac718491fb6.1d4eeed31e7a59f39e0bda72271a8026b29dcd8a');
-<br/><br/>
+<br/>
 The action invoked in in the (microservices/api.js file) as the following:<br/><br/>
 
    translate(ctx) { <br/>
@@ -32,4 +34,5 @@ The action invoked in in the (microservices/api.js file) as the following:<br/><
              }); <br/>
         }); <br/>
 
-
+<br/><br/>
+A promise is a callback and documented at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
